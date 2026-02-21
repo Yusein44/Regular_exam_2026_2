@@ -1,0 +1,26 @@
+name: .NET CI
+
+on:
+  push:
+    [cite_start]branches: [ "develop", "feature/**" ] 
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0
+
+    - name: Restore dependencies
+      [cite_start]run: dotnet restore 
+
+    - name: Build
+      [cite_start]run: dotnet build --no-restore 
+
+    - name: Test
+      [cite_start]run: dotnet test --no-build --verbosity normal 
