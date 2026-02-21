@@ -2,7 +2,9 @@ name: .NET CI
 
 on:
   push:
-    [cite_start]branches: [ "develop", "feature/**" ] 
+    branches:
+      - develop
+      - "feature/**"
 
 jobs:
   build-and-test:
@@ -16,11 +18,11 @@ jobs:
       with:
         dotnet-version: 8.0
 
-    - name: Restore dependencies
-      [cite_start]run: dotnet restore 
+    - name: Restore
+      run: dotnet restore
 
     - name: Build
-      [cite_start]run: dotnet build --no-restore 
+      run: dotnet build --no-restore
 
     - name: Test
-      [cite_start]run: dotnet test --no-build --verbosity normal 
+      run: dotnet test --no-build --verbosity normal
